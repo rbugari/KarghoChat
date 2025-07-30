@@ -44,7 +44,12 @@ app.use(helmet({
   crossOriginEmbedderPolicy: false
 }));
 
-// CORS configurado
+// =================================
+// CONFIGURACIÓN DE CORS
+// =================================
+
+// Definir corsOptions antes de usarlo
+// Cambiar esto:
 app.use(cors({
   origin: [
     'http://localhost:5173',
@@ -52,6 +57,17 @@ app.use(cors({
   ],
   credentials: true
 }));
+
+// Por esto:
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'https://tu-frontend-vercel.vercel.app'
+  ],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -156,6 +172,7 @@ process.on('unhandledRejection', (reason, promise) => {
 // INICIAR SERVIDOR
 // =================================
 
+// En la línea 162, ahora corsOptions.origin estará disponible
 const server = app.listen(PORT, () => {
   logger.info(`🚀 Kargho Chatbot API iniciado en puerto ${PORT}`);
   logger.info(`📝 Modo: ${process.env.NODE_ENV || 'development'}`);
