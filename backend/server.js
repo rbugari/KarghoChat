@@ -52,7 +52,7 @@ app.use(helmet({
 const corsOptions = {
   origin: [
     'http://localhost:5173',
-    'https://tu-frontend-vercel.vercel.app'
+    'https://kargho-chatbot-frontend.vercel.app'
   ],
   credentials: true
 };
