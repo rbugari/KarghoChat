@@ -168,7 +168,7 @@ process.on('unhandledRejection', (reason, promise) => {
 const server = app.listen(PORT, () => {
   logger.info(`🚀 Kargho Chatbot API iniciado en puerto ${PORT}`);
   logger.info(`📝 Modo: ${process.env.NODE_ENV || 'development'}`);
-  logger.info(`🌐 CORS habilitado para: ${corsOptions.origin}`);
+  logger.info(`🌐 CORS habilitado para: http://localhost:5173, https://tu-frontend-vercel.vercel.app`);
   logger.info(`📊 Rate limit: ${limiter.max} requests per ${limiter.windowMs / 1000 / 60} minutes`);
 });
 
