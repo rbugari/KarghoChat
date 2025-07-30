@@ -45,14 +45,13 @@ app.use(helmet({
 }));
 
 // CORS configurado
-const corsOptions = {
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
-  credentials: true,
-  optionsSuccessStatus: 200,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-};
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://tu-frontend-vercel.vercel.app'
+  ],
+  credentials: true
+}));
 
 // Rate limiting
 const limiter = rateLimit({
