@@ -49,16 +49,6 @@ app.use(helmet({
 // =================================
 
 // Definir corsOptions antes de usarlo
-// Cambiar esto:
-app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://tu-frontend-vercel.vercel.app'
-  ],
-  credentials: true
-}));
-
-// Por esto:
 const corsOptions = {
   origin: [
     'http://localhost:5173',
@@ -69,7 +59,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Rate limiting
+// =================================
+// RATE LIMITING
+// =================================
+
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutos
   max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100, // 100 requests por ventana
@@ -172,7 +165,6 @@ process.on('unhandledRejection', (reason, promise) => {
 // INICIAR SERVIDOR
 // =================================
 
-// En la línea 162, ahora corsOptions.origin estará disponible
 const server = app.listen(PORT, () => {
   logger.info(`🚀 Kargho Chatbot API iniciado en puerto ${PORT}`);
   logger.info(`📝 Modo: ${process.env.NODE_ENV || 'development'}`);
